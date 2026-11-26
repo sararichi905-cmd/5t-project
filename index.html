@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>@ The 5th Menu</title>
+  <meta name="description" content="The 5th Menu">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:light;--ground-top:#E9EFF3;--ground-bottom:#D5DFE6;--ink:#0E2A47;--navy:#0F2C4C;--door:#0C2744;--door-glow:#1A5688;--gold:#C9A862;--cream:#F3EEE3;--mist:#D9E2EC;--haze:#AFC0D2;--font-script:"Allura",cursive;--font-door-script:"Pinyon Script",cursive;--font-title:"Cinzel",Georgia,serif;--font-body:"Cormorant Garamond",Georgia,serif;--font-label:"Jost",system-ui,sans-serif}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground-top:#0B1826;--ground-bottom:#07111C;--ink:#D9E2EC;color-scheme:dark}}
+    :root[data-theme="dark"]{--ground-top:#0B1826;--ground-bottom:#07111C;--ink:#D9E2EC;color-scheme:dark}
+    *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--ground-top),var(--ground-bottom));color:var(--ink);font-family:var(--font-body);padding:28px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+    .page{display:flex;flex-direction:column;align-items:center;gap:28px}.book{position:relative;width:min(100%,600px);container-type:inline-size;perspective:2800px}
+    .menu{position:relative;background:var(--navy);color:var(--cream);padding:9cqw 10cqw 8cqw;text-align:center;box-shadow:0 24px 56px rgba(10,30,50,.35);transform:scale(.94);opacity:.6;transition:transform 1.6s cubic-bezier(.55,.05,.2,1),opacity 1.2s ease}.book.is-open .menu{transform:scale(1);opacity:1}
+    .menu::before,.menu::after{content:"";position:absolute;border:1px solid var(--gold);pointer-events:none}.menu::before{inset:4.6cqw}.menu::after{inset:6.3cqw;border-width:.5px}
+    .corner{position:absolute;width:3.6cqw;height:3.6cqw;background:var(--navy);z-index:1}.corner::before,.corner::after{content:"";position:absolute;inset:22%;border:1px solid var(--gold)}.corner::after{transform:rotate(45deg)}.corner--tl{top:2.8cqw;left:2.8cqw}.corner--tr{top:2.8cqw;right:2.8cqw}.corner--bl{bottom:2.8cqw;left:2.8cqw}.corner--br{bottom:2.8cqw;right:2.8cqw}
+    .menu__head{display:flex;flex-direction:column;align-items:center}.emblem{width:10.5cqw;min-width:48px;height:auto}.menu__logo{margin:.6cqw 0 0;font-family:var(--font-script);font-weight:400;font-size:13cqw;line-height:1.15;color:var(--gold)}.menu__label{margin:1.5cqw 0 0;font-family:var(--font-title);font-size:max(11px,2.2cqw);letter-spacing:.7em;text-indent:.7em;text-transform:uppercase}
+    .course{margin-top:4.5cqw;display:flex;flex-direction:column;align-items:center}.course__door{width:2.7cqw;min-width:14px;height:auto}.course__name{margin:2cqw 0 0;font-family:var(--font-label);font-weight:500;font-size:max(10px,1.7cqw);letter-spacing:.45em;text-indent:.45em;text-transform:uppercase;color:var(--gold)}
+    .dish{margin-top:2.6cqw;display:flex;flex-direction:column;align-items:center}.dish__name{margin:0;font-family:var(--font-title);font-weight:500;font-size:max(15px,3.7cqw);letter-spacing:.12em;text-indent:.12em;text-transform:uppercase;text-wrap:balance}.dish__text{margin:1.8cqw 0 0;font-style:italic;font-size:max(11.5px,2.75cqw);line-height:1.4;color:var(--mist);text-wrap:balance}.dish__price{margin:1.6cqw 0 0;font-family:var(--font-title);font-weight:500;font-size:max(13px,3cqw);letter-spacing:.08em;color:var(--gold)}
+    .allergens{list-style:none;margin:2.6cqw 0 0;padding:0;display:flex;gap:1.8cqw;color:var(--gold)}.icon{display:block;width:max(24px,4.4cqw);height:max(24px,4.4cqw);fill:none;stroke:currentColor;stroke-width:.9;stroke-linecap:round;stroke-linejoin:round}
+    .divider{margin-top:3cqw;display:flex;align-items:center;justify-content:center;gap:2.2cqw}.divider::before,.divider::after{content:"";width:11cqw;height:1px;background:var(--gold);opacity:.6}.divider span{width:1.5cqw;min-width:7px;aspect-ratio:1;background:var(--gold);transform:rotate(45deg)}
+    .menu__foot{margin-top:6cqw;display:flex;flex-direction:column;align-items:center;gap:2cqw}.legend__title{margin:0;font-family:var(--font-label);font-weight:500;font-size:max(9px,1.5cqw);letter-spacing:.35em;text-indent:.35em;text-transform:uppercase;color:var(--gold)}.legend{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5cqw 3.2cqw;font-family:var(--font-label);font-size:max(11px,1.8cqw);letter-spacing:.05em;color:var(--haze)}.legend li{display:flex;align-items:center;gap:1.1cqw}.legend .icon{width:max(20px,3.4cqw);height:max(20px,3.4cqw);color:var(--gold)}.menu__wish{margin:1.5cqw 0 0;font-style:italic;font-size:max(10px,2.6cqw);color:var(--mist);white-space:nowrap}.menu__credit{margin:0;font-family:var(--font-title);font-size:max(10px,1.8cqw);letter-spacing:.4em;text-indent:.4em;color:var(--gold)}.lattice{margin-top:4cqw;width:80cqw;max-width:100%;height:10px}
+    .door{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:var(--door);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 24px 50px rgba(10,30,50,.35);transition:transform 1.6s cubic-bezier(.55,.05,.2,1)}.door--left{left:0;transform-origin:left center}.door--right{right:0;transform-origin:right center}.book.is-open .door--left{transform:rotateY(-112deg)}.book.is-open .door--right{transform:rotateY(112deg)}
+    .door__face{position:absolute;top:0;bottom:0;width:200%;background:radial-gradient(ellipse at 50% 46%,rgba(27,92,147,.85),rgba(12,39,68,0) 62%)}.door--left .door__face{left:0}.door--right .door__face{left:-100%}.door__face::before,.door__face::after{content:"";position:absolute;border:1px solid var(--gold)}.door__face::before{inset:4cqw}.door__face::after{inset:5.3cqw;border-width:.5px;opacity:.7}.door__art{position:absolute;inset:0;width:100%;height:100%}
+    .door__kicker,.door__logo,.door__label{position:absolute;left:0;width:100%;margin:0;text-align:center;color:var(--gold)}.door__kicker{top:9cqw;font-family:var(--font-label);font-size:max(8px,1.5cqw);letter-spacing:.55em;text-indent:.55em}.door__logo{bottom:11cqw;font-family:var(--font-door-script);font-weight:400;font-size:9.7cqw;line-height:1;color:#F4F0E6}.door__label{bottom:7cqw;font-family:var(--font-label);font-weight:500;font-size:max(9px,1.7cqw);letter-spacing:.6em;text-indent:.6em}
+    .door--left::after,.door--right::after{content:"";position:absolute;top:0;bottom:0;width:7.5cqw}.door--left::after{right:0;background:linear-gradient(to left,rgba(4,14,28,.35),rgba(4,14,28,0))}.door--right::after{left:0;background:linear-gradient(to right,rgba(4,14,28,.35),rgba(4,14,28,0))}
+    .latch{position:absolute;inset:0;padding:0;border:0;background:transparent;cursor:pointer;transform:translateZ(4px)}.book.is-open .latch{pointer-events:none}.toggle{min-height:44px;padding:0 28px;background:transparent;border:1px solid var(--ink);color:var(--ink);font-family:var(--font-label);font-weight:500;font-size:11px;letter-spacing:.4em;text-indent:.4em;cursor:pointer}.toggle:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}.latch:focus-visible,.toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}.sprite{position:absolute;width:0;height:0;overflow:hidden}@media(prefers-reduced-motion:reduce){.menu,.door{transition-duration:.01s}}
+  </style>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-dairy" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11"/><path d="M11 6h4v3l2.5 3v7.5h-9V12L11 9zM8.5 14h9"/></symbol>
+    <symbol id="i-gluten" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11"/><path d="M13 20V6M13 9c2-3 4.5-3.5 5-3-.5 3-3 3.5-5 3zm0 0C11 6 8.5 5.5 8 6c.5 3 3 3.5 5 3zm0 4c2-3 4.5-3.5 5-3-.5 3-3 3.5-5 3zm0 0C11 10 8.5 9.5 8 10c.5 3 3 3.5 5 3zm0 4c2-3 4.5-3.5 5-3-.5 3-3 3.5-5 3zm0 0C11 14 8.5 13.5 8 14c.5 3 3 3.5 5 3z"/></symbol>
+    <symbol id="i-fish" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11"/><ellipse cx="11" cy="13" rx="5" ry="3.8"/><path d="M16 13l4.5-4v8z"/><circle cx="8.8" cy="12" r=".7" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-egg" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11"/><ellipse cx="13" cy="12.75" rx="4" ry="6.25"/></symbol>
+    <symbol id="i-nuts" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11"/><path d="M13 6c6 5 5 12 0 14-5-2-6-9 0-14zM13 9v8"/></symbol>
+  </svg>
+
+  <main class="page">
+    <div class="book" id="book">
+      <article class="menu" aria-labelledby="menu-title">
+        <span class="corner corner--tl"></span><span class="corner corner--tr"></span><span class="corner corner--bl"></span><span class="corner corner--br"></span>
+        <header class="menu__head">
+          <svg class="emblem" viewBox="0 0 84 84" fill="none" stroke="#C9A862" aria-hidden="true">
+            <circle cx="42" cy="42" r="40" stroke-width=".8"/><rect x="18" y="18" width="48" height="48" stroke-width=".9"/><rect x="18" y="18" width="48" height="48" stroke-width=".9" transform="rotate(45 42 42)"/><rect x="30" y="30" width="24" height="24" stroke-width=".7"/><rect x="30" y="30" width="24" height="24" stroke-width=".7" transform="rotate(45 42 42)"/><path d="M42 4V30M42 54V80M4 42H30M54 42H80" stroke-width=".6"/><circle cx="42" cy="42" r="3.5" fill="#C9A862" stroke="none"/>
+          </svg>
+          <h1 class="menu__logo" id="menu-title">@ The 5th</h1><p class="menu__label">Menu</p>
+        </header>
+
+        <section class="course">
+          <svg class="course__door" viewBox="0 0 16 22" fill="none" stroke="#C9A862" stroke-width=".9" aria-hidden="true"><path d="M1 21V9C1 4 6 3 8 0c2 3 7 4 7 9v12z"/></svg><h2 class="course__name">Starters</h2>
+          <article class="dish"><h3 class="dish__name">Moroccan Khizou</h3><p class="dish__text">Textures of carrot, fresh cumin cheese,<br>argan oil and golden almonds.</p><p class="dish__price">60</p><ul class="allergens"><li><svg class="icon" role="img" aria-label="Contains dairy"><use href="#i-dairy"/></svg></li><li><svg class="icon" role="img" aria-label="Contains nuts"><use href="#i-nuts"/></svg></li></ul></article>
+          <div class="divider" aria-hidden="true"><span></span></div>
+          <article class="dish"><h3 class="dish__name">Moroccan Briouates</h3><p class="dish__text">Crispy pastry parcels filled with cheese &amp; spinach,<br>spiced beef and seafood, served with a tomato-harissa condiment.</p><p class="dish__price">60</p><ul class="allergens"><li><svg class="icon" role="img" aria-label="Contains dairy"><use href="#i-dairy"/></svg></li><li><svg class="icon" role="img" aria-label="Contains gluten"><use href="#i-gluten"/></svg></li><li><svg class="icon" role="img" aria-label="Contains fish"><use href="#i-fish"/></svg></li></ul></article>
+        </section>
+
+        <div class="divider" aria-hidden="true"><span></span></div>
+        <section class="course">
+          <svg class="course__door" viewBox="0 0 16 22" fill="none" stroke="#C9A862" stroke-width=".9" aria-hidden="true"><path d="M1 21V9C1 4 6 3 8 0c2 3 7 4 7 9v12z"/></svg><h2 class="course__name">Main Courses</h2>
+          <article class="dish"><h3 class="dish__name">Fish Tagine</h3><p class="dish__text">Slow cooked style, chermoula-marinated fish,<br>saffron potatoes, tomatoes &amp; bell peppers.</p><p class="dish__price">170</p><ul class="allergens"><li><svg class="icon" role="img" aria-label="Contains fish"><use href="#i-fish"/></svg></li></ul></article>
+          <div class="divider" aria-hidden="true"><span></span></div>
+          <article class="dish"><h3 class="dish__name">Kebab Maghdour</h3><p class="dish__text">Sautéed beef with onion, cinnamon and aromatic herbs,<br>topped with a fried quail egg and served in a traditional tagine.</p><p class="dish__price">130</p><ul class="allergens"><li><svg class="icon" role="img" aria-label="Contains egg"><use href="#i-egg"/></svg></li></ul></article>
+        </section>
+
+        <div class="divider" aria-hidden="true"><span></span></div>
+        <section class="course">
+          <svg class="course__door" viewBox="0 0 16 22" fill="none" stroke="#C9A862" stroke-width=".9" aria-hidden="true"><path d="M1 21V9C1 4 6 3 8 0c2 3 7 4 7 9v12z"/></svg><h2 class="course__name">Desserts</h2>
+          <article class="dish"><h3 class="dish__name">Brise du Nord</h3><p class="dish__text">Orange blossom crème brûlée, orange blossom ice cream.</p><p class="dish__price">40</p><ul class="allergens"><li><svg class="icon" role="img" aria-label="Contains dairy"><use href="#i-dairy"/></svg></li><li><svg class="icon" role="img" aria-label="Contains egg"><use href="#i-egg"/></svg></li></ul></article>
+          <div class="divider" aria-hidden="true"><span></span></div>
+          <article class="dish"><h3 class="dish__name">Sticky Toffee Pudding</h3><p class="dish__text">A warm Mejhool date sponge,<br>toffee sauce and Bourbon vanilla ice cream.</p><p class="dish__price">40</p><ul class="allergens"><li><svg class="icon" role="img" aria-label="Contains dairy"><use href="#i-dairy"/></svg></li><li><svg class="icon" role="img" aria-label="Contains egg"><use href="#i-egg"/></svg></li><li><svg class="icon" role="img" aria-label="Contains gluten"><use href="#i-gluten"/></svg></li></ul></article>
+        </section>
+
+        <footer class="menu__foot">
+          <h2 class="legend__title">Allergen information</h2>
+          <ul class="legend"><li><svg class="icon" aria-hidden="true"><use href="#i-fish"/></svg>Fish</li><li><svg class="icon" aria-hidden="true"><use href="#i-dairy"/></svg>Dairy</li><li><svg class="icon" aria-hidden="true"><use href="#i-egg"/></svg>Egg</li><li><svg class="icon" aria-hidden="true"><use href="#i-nuts"/></svg>Nuts</li><li><svg class="icon" aria-hidden="true"><use href="#i-gluten"/></svg>Gluten</li></ul>
+          <p class="menu__wish">Our learners and teams wish you a delightful fun-dining experience!</p><p class="menu__credit">UM6P · SHBM</p>
+          <svg class="lattice" aria-hidden="true"><defs><pattern id="lattice-tile" width="16" height="10" patternUnits="userSpaceOnUse"><path d="M0 5L8 0l8 5-8 5z" fill="none" stroke="#C9A862" stroke-width=".6"/></pattern></defs><rect width="100%" height="10" fill="url(#lattice-tile)"/></svg>
+        </footer>
+      </article>
+
+      <div class="door door--left"><div class="door__face"><svg class="door__art" viewBox="110 120 380 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="M150 640V298c0-80 72-108 150-158 78 50 150 78 150 158v342z" fill="#1A5688" stroke="#C9A96A" stroke-width="1.2"/><path d="M162 640V300c0-72 66-98 138-142 72 44 138 70 138 142v340" fill="none" stroke="#C9A96A" stroke-width=".6" opacity=".8"/><path d="M300 158v482" stroke="#C9A96A" stroke-width="1"/><rect x="186" y="330" width="86" height="270" fill="none" stroke="#C9A96A" stroke-width=".5" opacity=".6"/><rect x="328" y="330" width="86" height="270" fill="none" stroke="#C9A96A" stroke-width=".5" opacity=".6"/><g fill="#C9A96A"><circle cx="204" cy="350" r="3"/><circle cx="254" cy="350" r="3"/><circle cx="204" cy="400" r="3"/><circle cx="254" cy="400" r="3"/><circle cx="204" cy="450" r="3"/><circle cx="254" cy="450" r="3"/><circle cx="204" cy="500" r="3"/><circle cx="254" cy="500" r="3"/><circle cx="204" cy="550" r="3"/><circle cx="254" cy="550" r="3"/><circle cx="346" cy="350" r="3"/><circle cx="396" cy="350" r="3"/><circle cx="346" cy="400" r="3"/><circle cx="396" cy="400" r="3"/><circle cx="346" cy="450" r="3"/><circle cx="396" cy="450" r="3"/><circle cx="346" cy="500" r="3"/><circle cx="396" cy="500" r="3"/><circle cx="346" cy="550" r="3"/><circle cx="396" cy="550" r="3"/><circle cx="283" cy="260" r="3"/><circle cx="317" cy="260" r="3"/><circle cx="283" cy="461" r="2.5"/><circle cx="317" cy="461" r="2.5"/></g><circle cx="283" cy="472" r="11" fill="none" stroke="#C9A96A" stroke-width="1.4"/><circle cx="317" cy="472" r="11" fill="none" stroke="#C9A96A" stroke-width="1.4"/><rect x="130" y="640" width="340" height="6" fill="#C9A96A" opacity=".9"/><rect x="118" y="646" width="364" height="6" fill="#C9A96A" opacity=".5"/></svg><p class="door__kicker">INSPIRED BY CHEFCHAOUEN</p><p class="door__logo">@ The 5th</p><p class="door__label">MENU</p></div></div>
+      <div class="door door--right"><div class="door__face"><svg class="door__art" viewBox="110 120 380 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="M150 640V298c0-80 72-108 150-158 78 50 150 78 150 158v342z" fill="#1A5688" stroke="#C9A96A" stroke-width="1.2"/><path d="M162 640V300c0-72 66-98 138-142 72 44 138 70 138 142v340" fill="none" stroke="#C9A96A" stroke-width=".6" opacity=".8"/><path d="M300 158v482" stroke="#C9A96A" stroke-width="1"/><rect x="186" y="330" width="86" height="270" fill="none" stroke="#C9A96A" stroke-width=".5" opacity=".6"/><rect x="328" y="330" width="86" height="270" fill="none" stroke="#C9A96A" stroke-width=".5" opacity=".6"/><g fill="#C9A96A"><circle cx="204" cy="350" r="3"/><circle cx="254" cy="350" r="3"/><circle cx="204" cy="400" r="3"/><circle cx="254" cy="400" r="3"/><circle cx="204" cy="450" r="3"/><circle cx="254" cy="450" r="3"/><circle cx="204" cy="500" r="3"/><circle cx="254" cy="500" r="3"/><circle cx="204" cy="550" r="3"/><circle cx="254" cy="550" r="3"/><circle cx="346" cy="350" r="3"/><circle cx="396" cy="350" r="3"/><circle cx="346" cy="400" r="3"/><circle cx="396" cy="400" r="3"/><circle cx="346" cy="450" r="3"/><circle cx="396" cy="450" r="3"/><circle cx="346" cy="500" r="3"/><circle cx="396" cy="500" r="3"/><circle cx="346" cy="550" r="3"/><circle cx="396" cy="550" r="3"/><circle cx="283" cy="260" r="3"/><circle cx="317" cy="260" r="3"/><circle cx="283" cy="461" r="2.5"/><circle cx="317" cy="461" r="2.5"/></g><circle cx="283" cy="472" r="11" fill="none" stroke="#C9A96A" stroke-width="1.4"/><circle cx="317" cy="472" r="11" fill="none" stroke="#C9A96A" stroke-width="1.4"/><rect x="130" y="640" width="340" height="6" fill="#C9A96A" opacity=".9"/><rect x="118" y="646" width="364" height="6" fill="#C9A96A" opacity=".5"/></svg><p class="door__kicker">INSPIRED BY CHEFCHAOUEN</p><p class="door__logo">@ The 5th</p><p class="door__label">MENU</p></div></div>
+      <button type="button" class="latch" id="latch" aria-label="Open the doors to the menu"></button>
+    </div>
+    <button type="button" class="toggle" id="toggle" aria-controls="book" aria-expanded="false">OPEN THE DOORS</button>
+  </main>
+  <script>
+    var book=document.getElementById('book'),toggle=document.getElementById('toggle'),latch=document.getElementById('latch');
+    function flip(){var open=book.classList.toggle('is-open');toggle.textContent=open?'CLOSE THE DOORS':'OPEN THE DOORS';toggle.setAttribute('aria-expanded',open?'true':'false')}
+    toggle.addEventListener('click',flip);latch.addEventListener('click',flip);
+  </script>
+</body>
+</html>
